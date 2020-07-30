@@ -15,7 +15,7 @@ class CountryCard extends StatelessWidget {
 
     final scrSize = MediaQuery.of(context).size;
     final scrWidth = scrSize.width;
-    final cardHeight = (scrSize.height - AppBar().preferredSize.height) * .59;
+    final cardHeight = (scrSize.height - AppBar().preferredSize.height) * .49;
     return Card(
       elevation: 0.0,
       margin: EdgeInsets.symmetric(
