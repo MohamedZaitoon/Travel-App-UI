@@ -16,40 +16,17 @@ class PlacesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final appBarHeight = AppBar().preferredSize.height;
     final scrSize = MediaQuery.of(context).size;
     final bodyHeight = scrSize.height - appBarHeight;
+
     return _fullBackgroundImage(
       context,
       child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: Colors.transparent,
-          leading: appBarButton(
-            Icon(Icons.arrow_back_ios),
-            Theme.of(context).primaryColor,
-            appBarHeight,
-            onTap: () {
-              print("back");
-              Navigator.of(context).pop();
-            },
-          ),
-          title: Center(child: Text(countryName ?? '')),
-          actions: <Widget>[
-            SizedBox(
-              width: appBarHeight * 1.1,
-              child: appBarButton(
-                Icon(Icons.bookmark_border),
-                Colors.black.withOpacity(.5),
-                appBarHeight,
-              ),
-            ),
-            SizedBox(
-              width: scrSize.width * .02,
-            ),
-          ],
-        ),
+        appBar: _buildAppbar(context,
+            theme: theme, appBarHeight: appBarHeight, scrSize: scrSize),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: scrSize.width * .04),
           child: Column(
@@ -60,15 +37,12 @@ class PlacesScreen extends StatelessWidget {
               ),
               ListTile(
                 contentPadding: EdgeInsets.all(0),
-                title: Text(
-                  "Trending Attractions",
-                  style: Theme.of(context).textTheme.headline6.copyWith(
-                      fontWeight: FontWeight.bold, color: Colors.white),
-                ),
+                title: Text("Trending Attractions",
+                    style: theme.textTheme.headline6),
                 trailing: IconButton(
                     icon: Icon(
                       Icons.more_vert,
-                      color: Colors.white,
+                      color: theme.primaryIconTheme.color,
                     ),
                     onPressed: () {}),
               ),
@@ -78,10 +52,7 @@ class PlacesScreen extends StatelessWidget {
               ),
               Text(
                 "Weekly Heighlights",
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6
-                    .copyWith(color: Colors.white),
+                style: theme.textTheme.headline6,
               ),
               SizedBox(
                 height: bodyHeight * .02,
@@ -119,6 +90,36 @@ class PlacesScreen extends StatelessWidget {
           ),
         ),
         child,
+      ],
+    );
+  }
+
+  Widget _buildAppbar(BuildContext context,
+      {ThemeData theme, double appBarHeight, Size scrSize}) {
+    return AppBar(
+      elevation: 0.0,
+      leading: appBarButton(
+        Icon(Icons.arrow_back_ios),
+        theme.primaryColor,
+        appBarHeight,
+        onTap: () {
+          print("back");
+          Navigator.of(context).pop();
+        },
+      ),
+      title: Center(child: Text(countryName ?? '')),
+      actions: <Widget>[
+        SizedBox(
+          width: appBarHeight * 1.1,
+          child: appBarButton(
+            Icon(Icons.bookmark_border),
+            theme.accentColor.withOpacity(.1),
+            appBarHeight,
+          ),
+        ),
+        SizedBox(
+          width: scrSize.width * .02,
+        ),
       ],
     );
   }

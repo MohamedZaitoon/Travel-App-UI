@@ -21,7 +21,6 @@ class TouristicPlaces extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         physics: BouncingScrollPhysics(),
-        addRepaintBoundaries: true,
         itemCount: PLACES[countryName].length - 1,
         itemBuilder: (ctx, i) => _placeCard(ctx, i + 1, bodyHeight * .27),
       ),
@@ -62,7 +61,6 @@ class TouristicPlaces extends StatelessWidget {
             child: Container(
               width: width,
               child: ListTile(
-                // contentPadding: EdgeInsets.all(0),
                 title: Text(place.name,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context)

@@ -51,7 +51,6 @@ class TrendingCard extends StatelessWidget {
                   trailing: appBarButton(
                       Icon(
                         Icons.chevron_right,
-                        color: Theme.of(context).primaryColor,
                       ),
                       Colors.white,
                       appBarHeight * .6),

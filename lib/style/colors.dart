@@ -8,4 +8,13 @@ Color hexColor(String hexCode) {
   return Color.fromRGBO(r, g, b, 1);
 }
 
-final BLACK = hexColor("0c0b0a");
+final primaryColor = hexColor("dc1254");
+final primaryColor900 = hexColor("981c44");
+
+final secondryColor = hexColor("635c5c");
+final accentColor = hexColor("eaeaea");
+final backgroundColor = hexColor("0c0b0a");
+
+final grey400 = hexColor("a2a2a2");
+
+final errorColor = hexColor("b00020");

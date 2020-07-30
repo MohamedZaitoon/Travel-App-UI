@@ -3,45 +3,47 @@ import 'package:travel_app/components/app_bar_button.dart';
 import 'package:travel_app/components/country_card.dart';
 import 'package:travel_app/dumy_data.dart';
 
-import '../style/colors.dart';
-
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final scrWidth = MediaQuery.of(context).size.width;
     final appBarHeight = AppBar().preferredSize.height;
     return Scaffold(
-      backgroundColor: BLACK,
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Colors.transparent,
-        leading: appBarButton(
-          Icon(Icons.filter_list),
-          Theme.of(context).primaryColor,
-          appBarHeight,
-        ),
-        title: Center(
-          child: Text(
-            "HOME",
-            textAlign: TextAlign.center,
-          ),
-        ),
-        actions: <Widget>[
-          SizedBox(
-            width: appBarHeight * 1.1,
-            child: appBarButton(
-              Icon(Icons.bookmark_border),
-              Color(0x09EAEAEA),
-              appBarHeight,
-            ),
-          ),
-          SizedBox(
-            width: scrWidth * .02,
-          ),
-        ],
-      ),
+      appBar: _buildAppBar(theme, appBarHeight, scrWidth),
       body: _buildListView(context),
-      bottomNavigationBar: _buildBottomNavBar(context),
+      bottomNavigationBar: _buildBottomNavBar(context, theme),
+    );
+  }
+
+  Widget _buildAppBar(ThemeData theme, double appBarHeight, double scrWidth) {
+    return AppBar(
+      elevation: 0.0,
+      leading: appBarButton(
+        Icon(Icons.filter_list),
+        theme.primaryColor,
+        appBarHeight,
+      ),
+      title: Center(
+        child: Text(
+          "HOME",
+          textAlign: TextAlign.center,
+        ),
+      ),
+      actions: <Widget>[
+        SizedBox(
+          width: appBarHeight * 1.1,
+          child: appBarButton(
+            Icon(Icons.bookmark_border),
+            theme.accentColor.withOpacity(.1),
+            appBarHeight,
+          ),
+        ),
+        SizedBox(
+          width: scrWidth * .02,
+        ),
+      ],
     );
   }
 
@@ -52,12 +54,12 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget _buildBottomNavBar(BuildContext context) {
+  Widget _buildBottomNavBar(BuildContext context, ThemeData theme) {
     return BottomNavigationBar(
-      selectedItemColor: Theme.of(context).primaryColor,
+      selectedItemColor: theme.primaryColor,
       elevation: 0.0,
       unselectedItemColor: Colors.grey,
-      backgroundColor: BLACK,
+      backgroundColor: theme.bottomAppBarColor,
       items: [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),

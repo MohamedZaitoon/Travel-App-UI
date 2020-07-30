@@ -11,6 +11,8 @@ class CountryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final scrSize = MediaQuery.of(context).size;
     final scrWidth = scrSize.width;
     final cardHeight = (scrSize.height - AppBar().preferredSize.height) * .59;
@@ -38,23 +40,22 @@ class CountryCard extends StatelessWidget {
               children: <Widget>[
                 Text(
                   _country.name,
-                  style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                  style: theme.textTheme.headline3,
                 ),
                 SizedBox(
                   height: cardHeight * .02,
                 ),
                 Text(
                   _country.phrase,
+                  style: theme.textTheme.bodyText1,
                 ),
                 SizedBox(
                   height: cardHeight * .1,
                 ),
-                ButtonTheme(
-                  minWidth: scrWidth / 2.5,
+                Container(
+                  width: scrWidth / 2.5,
                   height: cardHeight * 0.17,
                   child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
@@ -65,7 +66,11 @@ class CountryCard extends StatelessWidget {
                         ),
                       );
                     },
-                    child: Text("Explore Now"),
+                    child: Text(
+                      "Explore Now",
+                      style: theme.textTheme.bodyText1
+                          .copyWith(color: theme.primaryColor),
+                    ),
                   ),
                 ),
               ],

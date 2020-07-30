@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:travel_app/style/theme.dart';
 
 import 'screens/home_screen.dart';
 
@@ -15,9 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.pink,
-      ),
+      theme: buildTravelTheme(),
       home: Home(),
     );
   }
