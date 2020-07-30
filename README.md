@@ -1,6 +1,6 @@
 # Travel UI App
 
-A flutter without functionalities. Implemented for fun and practice .
+A flutter ui app  without functionalities. Implemented for fun and practice .
 
 **Design credit**: https://dribbble.com/shots/9024252-TRVL-App
 
