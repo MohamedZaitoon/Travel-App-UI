@@ -22,11 +22,25 @@ class TrendingCard extends StatelessWidget {
       child: Stack(
         overflow: Overflow.visible,
         children: [
-          Image.asset(
-            place.imageUrl,
-            fit: BoxFit.cover,
-            height: imageHeight,
+          // Image.asset(
+          //   place.imageUrl,
+          //   fit: BoxFit.cover,
+          //   height: imageHeight,
+          //   width: double.infinity,
+          // ),
+          Container(
             width: double.infinity,
+            height: imageHeight,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  place.imageUrl,
+                ),
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(.6), BlendMode.darken),
+              ),
+            ),
           ),
           Positioned(
             bottom: imageHeight * .05,

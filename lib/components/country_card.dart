@@ -25,11 +25,25 @@ class CountryCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(scrWidth * .03)),
       child: Stack(
         children: <Widget>[
-          Image.asset(
-            _country.imageUrl,
-            fit: BoxFit.cover,
-            height: cardHeight,
+          // Image.asset(
+          //   _country.imageUrl,
+          //   fit: BoxFit.cover,
+          //   height: cardHeight,
+          //   width: double.infinity,
+          // ),
+          Container(
             width: double.infinity,
+            height: cardHeight,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  _country.imageUrl,
+                ),
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(.6), BlendMode.darken),
+              ),
+            ),
           ),
           Positioned(
             bottom: cardHeight * .10,

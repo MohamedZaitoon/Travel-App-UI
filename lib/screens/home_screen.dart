@@ -3,16 +3,31 @@ import 'package:travel_app/components/app_bar_button.dart';
 import 'package:travel_app/components/country_card.dart';
 import 'package:travel_app/dumy_data.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  List pages = [];
+
+  var currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
+    pages = [
+      _buildListView(context),
+      _buildListView(context),
+      _buildListView(context),
+      _buildListView(context)
+    ];
     final theme = Theme.of(context);
-
     final scrWidth = MediaQuery.of(context).size.width;
     final appBarHeight = AppBar().preferredSize.height;
+
     return Scaffold(
       appBar: _buildAppBar(theme, appBarHeight, scrWidth),
-      body: _buildListView(context),
+      body: pages[currentIndex],
       bottomNavigationBar: _buildBottomNavBar(context, theme),
     );
   }
@@ -56,10 +71,16 @@ class Home extends StatelessWidget {
 
   Widget _buildBottomNavBar(BuildContext context, ThemeData theme) {
     return BottomNavigationBar(
-      selectedItemColor: theme.primaryColor,
-      elevation: 0.0,
-      unselectedItemColor: Colors.grey,
       backgroundColor: theme.bottomAppBarColor,
+      elevation: 0.0,
+      selectedItemColor: theme.primaryColor,
+      unselectedItemColor: Colors.grey,
+      currentIndex: currentIndex,
+      onTap: (value) {
+        setState(() {
+          currentIndex = value;
+        });
+      },
       items: [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
